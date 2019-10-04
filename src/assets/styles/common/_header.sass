@@ -1,0 +1,52 @@
+.header
+  display: flex
+  height: $header-height
+  align-items: center
+  justify-content: space-between
+  padding: 10px 55px
+  z-index: 50
+  width: 100%
+  .ant-menu-inline
+    border-right: 0
+  .header-nav *
+    background: unset
+  .header-nav
+    display: flex
+    align-items: flex-end
+    height: 100%
+    border-right: 1px solid gray
+  .header-logo, .header-soc, .header-nav
+    width: 50%
+    text-align: right
+  &-soc-link
+    margin-right: 25px
+    margin-top: 10px
+    a
+      color: $c-text
+  .soc-icons
+    .icon
+      max-height: 25px
+      max-width: 25px
+      margin-right: 15px
+      svg
+        fill: $c-firm
+        &:hover
+          fill: #999999
+  .logo-icon
+    height: 40px
+    width: 40px
+    enableBackground: new 0 0 110 110
+    .logo-icon-st0
+      transition: .3s ease
+      fill: #e88e6c
+    .logo-icon-st1
+      transition: .3s ease
+      fill: #FEFEFE
+    &:hover
+      .logo-icon-st0
+        fill: #FEFEFE
+      .logo-icon-st1
+        fill: #e88e6c
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected
+  background-color: unset !important
