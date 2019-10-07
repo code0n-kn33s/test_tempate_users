@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { List, Avatar, Button, Icon, message } from 'antd'
-
-import UserInfoDrawer from './UserInfoDrawer'
+import { Link } from 'react-router-dom'
 
 import { usersActions } from '../../../actions'
 
@@ -33,22 +32,21 @@ class ListItem extends React.Component {
         <List.Item
           actions={
             [
-              <UserInfoDrawer>
+              <Link to={`/edit/${id}`}>
                 <Button shape="circle" icon="edit"/>
-              </UserInfoDrawer>,
-              <UserInfoDrawer>
-                <Button shape="circle" icon="search"/>
-              </UserInfoDrawer>,
+              </Link>,
+
               <Button shape="circle" icon="delete" onClick={ this.props.deleteUser(id) }/>
             ]
           }
         >
+
           <List.Item.Meta
             avatar={<Avatar src={costumAvatar} />}
             title={
-              <UserInfoDrawer>
+              <div>
                   {employee_name && employee_name !== '' ? employee_name : 'John Dou'}
-              </UserInfoDrawer>
+              </div>
             }
             description={
               (

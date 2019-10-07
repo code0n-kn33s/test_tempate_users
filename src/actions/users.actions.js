@@ -34,6 +34,29 @@ const getUsersData = () => ( dispatch ) => {
     })
 }
 
+const getUserData = (id) => ( dispatch ) => {
+  dispatch( { type: usersConst.REQ_USER_DATA } )
+
+  axios.get(`http://dummy.restapiexample.com/api/v1/employee/${id}`)
+    .then( res => {
+      res.costumAvatar=`https://i.pravatar.cc/150?img=${id}`
+      return res
+    })
+    .then( res => {
+      dispatch({
+        type: usersConst.RES_USER_DATA,
+        payload: res
+      })
+    })
+    .catch( error => {
+      dispatch({
+        type: usersConst.ERR_USER_DATA,
+        payload: error
+      })
+    })
+}
+
+
 const deleteUser = (id) => (dispatch) => {
   dispatch({
     type: usersConst.REQ_USER_DEL_DATA
@@ -53,8 +76,16 @@ const deleteUser = (id) => (dispatch) => {
   )
 }
 
-const startEditUser = (id) => (dispatch) => {
-  console.log('USER ID', id)
+const editUser = (id, body) => (dispatch) => {
+
+  dispatch({ type: usersConst.REQ_USER_EDIT_DATA });
+
+  axios.put(`http://dummy.restapiexample.com/api/v1/update/${id}`, {
+    body
+  })
+  .then( res =>  console.log('get  respinse',   res) )
+
+
 }
 
 const eriseUsersData = () => (dispatch) => {
@@ -73,8 +104,9 @@ const filterUsersData = (e, obj) => (dispatch, state) => {
 
 export const usersActions = {
   getUsersData,
+  getUserData,
   deleteUser,
-  startEditUser,
   eriseUsersData,
-  filterUsersData
+  filterUsersData,
+  editUser
 }

@@ -1,4 +1,4 @@
-import Main from "./pages/Main"
+import Main from "./pages/Main/MainWrapper"
 import Help from "./pages/Help"
 import Contact from "./pages/Contacts"
 
@@ -6,8 +6,7 @@ import NotFound from "./pages/NotFound"
 
 const Routes = [
   {
-    path: '/',
-    exact: true,
+    path: '/dashboard',
     component: Main
   },
   {

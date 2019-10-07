@@ -2,6 +2,7 @@ import { usersConst } from '../../const'
 
 const initialState = {
   usersList: [],
+  filtredList: [],
   isLoadedUsersList: false,
   wasDelete: false,
   err: ''
@@ -52,7 +53,7 @@ function users(state = initialState, action){
     case usersConst.FILTER_USERS_DATA:
       return {
         ...state,
-        usersList: action.payload
+        filtredList: action.payload
       }
 
     default:

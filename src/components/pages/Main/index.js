@@ -16,7 +16,8 @@ class Main extends Component {
   }
 
   render() {
-    const { isLoadedUsersList, usersList } = this.props.usersData
+    const { isLoadedUsersList, usersList } = this.props.usersData;
+    const { data } =  this.props;
 
     return (
       <>
@@ -27,7 +28,7 @@ class Main extends Component {
           <hr className="sepor" />
         </div>
         {
-            isLoadedUsersList && Array.isArray(usersList) ?
+            isLoadedUsersList && Array.isArray(data) ?
               (
                 <>
                   <ListAnt
@@ -47,7 +48,7 @@ class Main extends Component {
                       },
                       pageSize: 15,
                     }}
-                    dataSource={usersList}
+                    dataSource={data}
                     renderItem={props => (
                       <UsersListItem key={props.id} {...props} />
                     )}
@@ -65,9 +66,13 @@ class Main extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  usersData: state.users
-})
+const mapStateToProps = (state) => {
+  const  { filtredList, usersList } = state.users.list;
+  return ({
+    usersData: state.users.list,
+    data: filtredList.length !== 0 ? filtredList : usersList
+  })
+}
 
 const mapDispatchToProps = (dispatch) => ({
   getListUsers: () => {

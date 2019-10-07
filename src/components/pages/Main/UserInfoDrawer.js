@@ -1,5 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import { Drawer, Divider, Col, Row } from 'antd';
+
+import {usersActions} from '../../../actions';
 
 const pStyle = {
   fontSize: 16,
@@ -32,7 +35,7 @@ const DescriptionItem = ({ title, content }) => (
 );
 
 class UserInfoDrawer extends React.Component {
-  state = { visible: false };
+  state = { closed: true };
 
   showDrawer = () => {
     this.setState({
@@ -41,12 +44,15 @@ class UserInfoDrawer extends React.Component {
   };
 
   onClose = () => {
-    this.setState({
-      visible: false,
-    });
+    this.props.history.push('/dashboard');
   };
 
+  componentDidMount(){
+    // this.props.getData( this.props.match.params.id);
+  }
+
   render() {
+    const { id } = this.props;
     return (
       <div>
         <div onClick={this.showDrawer}>
@@ -57,8 +63,9 @@ class UserInfoDrawer extends React.Component {
           placement="right"
           closable={false}
           onClose={this.onClose}
-          visible={this.state.visible}
+          visible={true}
         >
+          <button onClick={ (e)=>  this.props.editUser(id)}>  EDIT USER </button>
           <p style={{ ...pStyle, marginBottom: 24 }}>User Profile</p>
           <p style={pStyle}>Personal</p>
           <Row>
@@ -147,4 +154,18 @@ class UserInfoDrawer extends React.Component {
   }
 }
 
-export default UserInfoDrawer
+const mapStateToProps = (state) => ({
+  usersData: state.users.list
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  editUser: (id, body) => {
+    dispatch( usersActions.editUser(id, {
+      name: 'from action',
+      salary:  'from action',
+      age: 55
+    }) )
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserInfoDrawer)

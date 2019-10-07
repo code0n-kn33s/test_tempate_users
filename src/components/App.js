@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect} from 'react-router-dom'
 import Routes from './RootRoutes'
 
+import UserInfoDrawer from './pages/Main/UserInfoDrawer'
 import Header from './parts/Header'
 import Footer from './parts/Footer'
 
@@ -16,12 +17,15 @@ class App extends Component {
         <div className="content">
           <div className="container">
             <Switch>
+              <Redirect exact from="/" to="/dashboard" push/>
               {
                 Routes.map((route, index) => (
                   <Route key={index} {...route} />
                 ))
               }
             </Switch>
+
+           
           </div>
         </div>
         <Footer />
