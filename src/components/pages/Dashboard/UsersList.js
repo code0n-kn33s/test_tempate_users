@@ -1,12 +1,13 @@
+
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Input, List as ListAnt } from 'antd'
 
 import { usersActions } from '../../../actions/index'
-import Preloader from './../../common/Preloader'
+import Preloader from '../../common/Preloader'
 import UsersListItem from './UsersListItem'
 
-class Main extends Component {
+class UsersList extends Component {
   componentDidMount() {
     this.props.getListUsers()
   }
@@ -86,4 +87,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main)
+export default connect(mapStateToProps, mapDispatchToProps)(UsersList)

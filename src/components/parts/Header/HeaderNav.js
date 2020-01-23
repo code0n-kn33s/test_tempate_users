@@ -27,31 +27,22 @@ class HeaderNav extends Component {
           mode={this.state.mode}
           theme={this.state.theme}
         >
-          <Menu.Item key="/">
+          <Menu.Item key="/dashboard">
             <NavLink
               className={`header-nav-link`}
-              exact={true}
-              to='/'
+              // exact={true}
+              to='/dashboard'
             >
-              Get Users
+              Users
             </NavLink>
           </Menu.Item>
-          <Menu.Item key="/not_found">
+          <Menu.Item key="/description">
             <NavLink
               className={`header-nav-link`}
               exact={true}
-              to='/not_found'
+              to='/description'
             >
-              404
-            </NavLink>
-          </Menu.Item>
-          <Menu.Item key="/help">
-            <NavLink
-              className={`header-nav-link`}
-              exact={true}
-              to='/help'
-            >
-              Help
+              Description
             </NavLink>
           </Menu.Item>
         </Menu>

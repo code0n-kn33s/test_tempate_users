@@ -32,7 +32,7 @@ class ListItem extends React.Component {
         <List.Item
           actions={
             [
-              <Link to={`/edit/${id}`}>
+              <Link to={`/dashboard/${id}`}>
                 <Button shape="circle" icon="edit"/>
               </Link>,
 

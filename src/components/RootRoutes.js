@@ -1,23 +1,16 @@
-import Main from "./pages/Main/MainWrapper"
-import Help from "./pages/Help"
-import Contact from "./pages/Contacts"
-
+import Dashboard from "./pages/Dashboard"
+import Description from "./pages/Description"
 import NotFound from "./pages/NotFound"
 
 const Routes = [
   {
     path: '/dashboard',
-    component: Main
+    component: Dashboard
   },
   {
-    path: '/help',
+    path: '/description',
     exact: true,
-    component: Help
-  },
-  {
-    path: '/contacts',
-    exact: true,
-    component: Contact
+    component: Description
   },
   {
     component: NotFound

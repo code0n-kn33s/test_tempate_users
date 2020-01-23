@@ -9,7 +9,7 @@ const getUsersData = () => ( dispatch ) => {
 
   axios.get('http://dummy.restapiexample.com/api/v1/employees')
     .then( res => {
-      let costumArr = res.data.map( (user, index) => {
+      let costumArr = res.data.data.map( (user, index) => {
         const createGender = getRandomGender()
         return({
             ...user,

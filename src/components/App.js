@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import { Switch, Route, Redirect} from 'react-router-dom'
 import Routes from './RootRoutes'
 
-import UserInfoDrawer from './pages/Main/UserInfoDrawer'
 import Header from './parts/Header'
-import Footer from './parts/Footer'
 
 import 'antd/dist/antd.less'
 import '../assets/styles/main.sass'
@@ -24,11 +22,8 @@ class App extends Component {
                 ))
               }
             </Switch>
-
-           
           </div>
         </div>
-        <Footer />
       </>
     )
   }
