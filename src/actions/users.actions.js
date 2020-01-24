@@ -38,14 +38,10 @@ const getUserData = (id) => ( dispatch ) => {
   dispatch( { type: usersConst.REQ_USER_DATA } )
 
   axios.get(`http://dummy.restapiexample.com/api/v1/employee/${id}`)
-    .then( res => {
-      res.costumAvatar=`https://i.pravatar.cc/150?img=${id}`
-      return res
-    })
-    .then( res => {
+    .then( () => {
       dispatch({
         type: usersConst.RES_USER_DATA,
-        payload: res
+        payload: id
       })
     })
     .catch( error => {
@@ -55,7 +51,6 @@ const getUserData = (id) => ( dispatch ) => {
       })
     })
 }
-
 
 const deleteUser = (id) => (dispatch) => {
   dispatch({
@@ -76,16 +71,60 @@ const deleteUser = (id) => (dispatch) => {
   )
 }
 
-const editUser = (id, body) => (dispatch) => {
+const editUser = (id, body, history, message) => (dispatch) => {
+  dispatch({ type: usersConst.REQ_USER_EDIT_DATA })
 
-  dispatch({ type: usersConst.REQ_USER_EDIT_DATA });
-
-  axios.put(`http://dummy.restapiexample.com/api/v1/update/${id}`, {
-    body
+  axios.put(`http://dummy.restapiexample.com/api/v1/update/${id}`, JSON.stringify(body), {
+    headers: { "Content-Type": "application/json/x-www-form-urlencoded" }
   })
-  .then( res =>  console.log('get  respinse',   res) )
+  .then( () => {
+    dispatch({
+      type: usersConst.RES_USER_EDIT_DATA,
+      payload: id,
+      body: body,
+    })
+  })
+  .then( () => {
+    history.push('/dashboard')
+  })
+  .catch(err =>
+    dispatch({
+      type: usersConst.ERR_USER_EDIT_DATA,
+      payload: err
+    })
+  )
+}
 
+const createUser = (body, history) => (dispatch) => {
+  dispatch({ type: usersConst.REQ_CREATE_USER })
 
+  axios.post("http://dummy.restapiexample.com/api/v1/create", JSON.stringify({
+    name: body.employee_name,
+    age: body.employee_age,
+    salary: body.employee_salary
+  }), {
+    headers: { "Content-Type": "application/json/x-www-form-urlencoded" }
+  })
+  .then( (res) => {
+    dispatch({
+      type: usersConst.RES_CREATE_USER,
+      payload: {
+        id: res.data.data.id,
+        gender: getRandomGender(),
+        costumAvatar: `https://i.pravatar.cc/150?img=${res.data.data.id}`,
+        ...body
+      },
+    })
+  })
+  .then( () => {
+    history.push('/dashboard')
+  })
+  .catch(err =>
+    dispatch({
+      type: usersConst.ERR_CREATE_USER,
+      payload: err
+    })
+  )
 }
 
 const eriseUsersData = () => (dispatch) => {
@@ -105,8 +144,9 @@ const filterUsersData = (e, obj) => (dispatch, state) => {
 export const usersActions = {
   getUsersData,
   getUserData,
+  filterUsersData,
+  editUser,
+  createUser,
   deleteUser,
   eriseUsersData,
-  filterUsersData,
-  editUser
 }

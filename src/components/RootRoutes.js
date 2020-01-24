@@ -1,6 +1,6 @@
 import Dashboard from "./pages/Dashboard"
-import Description from "./pages/Description"
-import NotFound from "./pages/NotFound"
+import Task from "./pages/Task"
+import NotFound from "./parts/NotFound"
 
 const Routes = [
   {
@@ -8,9 +8,9 @@ const Routes = [
     component: Dashboard
   },
   {
-    path: '/description',
+    path: '/task',
     exact: true,
-    component: Description
+    component: Task
   },
   {
     component: NotFound

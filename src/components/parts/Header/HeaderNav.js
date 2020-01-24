@@ -30,19 +30,19 @@ class HeaderNav extends Component {
           <Menu.Item key="/dashboard">
             <NavLink
               className={`header-nav-link`}
-              // exact={true}
+              exact={true}
               to='/dashboard'
             >
               Users
             </NavLink>
           </Menu.Item>
-          <Menu.Item key="/description">
+          <Menu.Item key="/task">
             <NavLink
               className={`header-nav-link`}
               exact={true}
-              to='/description'
+              to='/task'
             >
-              Description
+              Task
             </NavLink>
           </Menu.Item>
         </Menu>

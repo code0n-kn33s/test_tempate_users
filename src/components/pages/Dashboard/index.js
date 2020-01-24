@@ -1,16 +1,15 @@
 import React from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
-import UsersList from './UsersList'
-import UserEdit from './UserEdit'
+import List from './List'
+import Drawer from './Drawer'
 
 const index = () => {
   return(
     <>
-      <h1>INDEX</h1>
+      <List/>
       <Switch>
-        <Route exact path="/dashboard" component={UsersList} />
-        <Route exact path="/dashboard/:id" component={UserEdit}/>
+        <Route path="/dashboard/:id" component={Drawer}/>
       </Switch>
     </>
   )

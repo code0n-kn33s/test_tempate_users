@@ -1,7 +1,14 @@
 .main-head
   margin-bottom: 18px
+  &-top
+    display: flex
+    align-items: center
+    h2
+      font-family: branded
+      font-size: 35px
+      margin-right: 20px
   &-search
-    width: 200px
+    width: 250px
 .main-users-list-item
   .ant-list-item
     margin-bottom: 26px !important
@@ -13,3 +20,15 @@
   width: 150px
   overflow: hidden
   text-overflow: ellipsis
+.main-users_list
+  .ant-list-pagination
+    position: absolute
+    top: 0
+    right: 0
+    margin-top: 0
+    transform: translateY(-250%)
+  .user-edit
+    &-info
+      font-size: 16px
+      color: rgba(0,0,0,0.85)
+      margin-bottom: 16px

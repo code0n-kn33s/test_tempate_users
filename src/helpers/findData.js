@@ -2,7 +2,6 @@ export const isFindFn = (objPart, value) => {
   let isFindx = false
 
   if (typeof (objPart) === 'object') {
-
     for (let key in objPart) {
       isFindx = isFindFn(objPart[key], value)
     }
@@ -25,16 +24,16 @@ export const isFindFn = (objPart, value) => {
 export const filterData = (e, obj) => {
   const val = e.target.value.toLowerCase()
 
- let result = obj.filter( item => {
+  let result = obj.filter(item => {
     let isFind = false
 
-    for( let key in item){
-      if (isFindFn(item[key], val) ){
+    for (let key in item) {
+      if (isFindFn(item[key], val)) {
         isFind = true
       }
     }
     return isFind
   })
-
+  console.log('result', result)
   return result
 }
