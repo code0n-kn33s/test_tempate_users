@@ -34,6 +34,6 @@ export const filterData = (e, obj) => {
     }
     return isFind
   })
-  console.log('result', result)
+
   return result
 }

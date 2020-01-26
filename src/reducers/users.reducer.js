@@ -2,7 +2,7 @@ import { usersConst } from '../const'
 
 const initialState = {
   usersList: [],
-  filtredList: [],
+  filtredList: null,
   isLoadedUsersList: false,
 
   isCreate: false,
@@ -108,7 +108,17 @@ function users(state = initialState, action) {
       return {
         ...initialState
       }
+    case usersConst.RESET_USERS_DATA:
+      return {
+        ...state,
+        filtredList: action.payload
+      }
     case usersConst.FILTER_USERS_DATA:
+      return {
+        ...state,
+        filtredList: action.payload
+      }
+    case usersConst.SORT_USERS_DATA:
       return {
         ...state,
         filtredList: action.payload
