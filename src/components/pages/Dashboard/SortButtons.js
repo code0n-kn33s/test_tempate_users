@@ -6,12 +6,12 @@ const width = {
   fontSize: '12px'
 }
 
-const SortItem = ({ sortAction, viewArrow, title }) => (
+const SortButtons = ({ sortAction, viewArrow, title }) => (
   <div
     className="main-head-sort-item"
     onClick={() => sortAction()}
   >
-    <div className="main-head-sort-title">{title}</div>
+    { title && <div className="main-head-sort-title">{title}</div> }
     <div className="main-head-sort-carrets">
       <Icon
         type="caret-up"
@@ -29,4 +29,4 @@ const SortItem = ({ sortAction, viewArrow, title }) => (
   </div>
 );
 
-export default SortItem;
+export default SortButtons;

@@ -1,13 +1,13 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-import List from './List'
+import ListController from './ListController'
 import Drawer from './Drawer'
 
 const index = () => {
   return(
     <>
-      <List/>
+      <ListController/>
       <Switch>
         <Route path="/dashboard/:id" component={Drawer}/>
       </Switch>

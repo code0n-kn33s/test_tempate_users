@@ -1,0 +1,131 @@
+$dark-gray: #c6c6c6
+$font-color: #1d1d1b
+$brown-hover: #b17f4a
+$link-hover: #09245b
+$yellow-hover: #fffae6
+$links: #36a9e1
+
+.table
+  display: flex
+  flex-direction: column
+  font-size: 16px
+
+.table *:focus
+  outline: none
+
+.table__row
+  height: 60px
+  width: 100%
+  display: flex
+  align-items: center
+  box-sizing: border-box
+  padding: 15px 20px 15px
+  border-top: 1px solid transparent
+  border-bottom: 1px solid transparent
+
+.table__row.head
+  border-bottom: 2px dashed $dark-gray
+  font-style: italic
+
+.table__row.link
+  text-decoration: none
+  color: $font-color
+
+.table__row.open
+  flex-wrap: wrap
+
+.table__row.link:hover
+  color: $brown-hover
+  cursor: pointer
+
+.table__row:hover
+  background: $yellow-hover
+  border-top: 1px solid $brown-hover
+  border-bottom: 1px solid $brown-hover
+
+.table__row.head:hover
+  border-top: 1px solid transparent
+  border-bottom: 2px dashed $dark-gray
+  background: transparent
+  cursor: default
+
+.table__row-link
+  width: 100%
+  display: flex
+  text-decoration: none
+  color: $font-color
+
+.table__row-link:hover
+  color: $brown-hover
+
+.table__row-withLinks
+  a
+    color: $links
+
+.table_cell
+  text-align: left !important
+
+.table_cell.folder
+  width: 40px
+  box-sizing: border-box
+  margin-right: 20px
+  position: relative
+
+.table_cell.id
+  width: 56px
+
+
+.table_cell.small
+  width: 15%
+
+.table_cell.medium
+  width: 25%
+  padding: 0 10px
+
+.table_cell.large
+  width: 40%
+  padding: 0 10px
+
+.table_cell.extra-large
+  width: 60%
+
+.table_cell.img
+  position: relative
+  width: 40%
+  padding: 0 10px
+  img
+    height: 90px
+
+.openRow
+  width: 3.5%
+  border: none
+  padding: 0px
+  display: flex
+  justify-content: center
+  position: relative
+  left: -10px
+  background: transparent
+
+.openRow > img
+  width: 15px
+  transition: 0.3s
+
+.openRow > img.open
+  transform: rotate(180deg)
+
+.openRow__item
+  width: 100%
+  display: flex
+
+.openRow__container
+  display: flex
+  flex-direction: column
+
+.table__row.disabled
+  color: $dark-gray
+
+  &:hover
+    background: transparent
+    color:  $dark-gray
+    border-top: 1px solid transparent
+    border-bottom: 1px solid transparent

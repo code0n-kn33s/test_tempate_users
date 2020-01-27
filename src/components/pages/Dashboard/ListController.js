@@ -2,14 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 
-import UsersListItem from './ListItem'
-import SortItem from './SortItem'
+import SortButtons from './SortButtons'
 import Preloader from '../../common/Preloader'
+import Pagination from './Pagination/Pagination'
 
-import { Input, List as ListAnt, Button } from 'antd'
+import { Row, Cell } from './Table'
+
+import { Input, Button } from 'antd'
 import { usersActions } from '../../../actions'
 
-class UsersList extends Component {
+class ListController extends Component {
   state = {
     iconLoading: false,
     employee_name: null,
@@ -66,51 +68,66 @@ class UsersList extends Component {
                 Add User
               </Button>
             </Link>
-          </div>
-          <div className="main-head-search">
             <Input
               placeholder="Basic usage"
               onChange={this.props.filterUsers(data)}
             />
-            <div className="main-head-sort-list">
-              <SortItem
-                sortAction={this.sortColData('String', 'employee_name')}
-                viewArrow={this.state.employee_name}
-                title="name"
-              />
-              <SortItem
-                sortAction={this.sortColData('Number', 'employee_age')}
-                viewArrow={this.state.employee_age}
-                title="age"
-              />
-              <SortItem
-                sortAction={this.sortColData('Number', 'employee_salary')}
-                viewArrow={this.state.employee_salary}
-                title="salary"
-              />
-              <div onClick={() => this.resetSort()} className="main-head-search-reset">RESET</div>
-            </div>
           </div>
-          <hr className="sepor" />
+          <div className="main-head-search">
+            <Row type="head">
+              <Cell type="img">#</Cell>
+              <Cell type="large">
+                <SortButtons
+                  sortAction={this.sortColData('String', 'employee_name')}
+                  viewArrow={this.state.employee_name}
+                  title="name"
+                />
+              </Cell>
+              <Cell type="medium">
+                <SortButtons
+                  sortAction={this.sortColData('Number', 'employee_age')}
+                  viewArrow={this.state.employee_age}
+                  title="age"
+                />
+              </Cell>
+              <Cell type="medium">
+                <SortButtons
+                  sortAction={this.sortColData('Number', 'employee_salary')}
+                  viewArrow={this.state.employee_salary}
+                  title="salary"
+                />
+              </Cell>
+              <Cell type="medium">
+                <div onClick={() => this.resetSort()} className="main-head-search-reset">RESET</div>
+              </Cell>
+            </Row>
+          </div>
         </div>
         <div className="main-users_list">
           {
             isLoaded && Array.isArray(data) ?
               (
-                <ListAnt
-                  grid={{ gutter: 16, xs: 1, sm: 2, md: 2, lg: 3, xxl: 3 }}
-                  itemLayout="vertical"
-                  size="large"
-                  pagination={{ pageSize: 6 }}
-                  dataSource={data}
-                  renderItem={props => (
-                    <UsersListItem
-                      key={props.id}
-                      {...props}
-                      showDrawer={this.showDrawer}
-                    />
-                  )}
-                />
+                <>
+                  <Pagination
+                    list={data}
+                    listPerPage="6"
+                  />
+                </>
+
+                // <ListAnt
+                //   grid={{ gutter: 16, xs: 1, sm: 2, md: 2, lg: 3, xxl: 3 }}
+                //   itemLayout="vertical"
+                //   size="large"
+                //   pagination={{ pageSize: 6 }}
+                //   dataSource={data}
+                //   renderItem={props => (
+                //     <UsersListItem
+                //       key={props.id}
+                //       {...props}
+                //       showDrawer={this.showDrawer}
+                //     />
+                //   )}
+                // />
               ) :
               (
                 <div>
@@ -153,4 +170,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UsersList))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ListController))
